@@ -175,18 +175,16 @@ function addNum(arr1, arr2) {
         let num;
 
         if(result > 9) {
-            num = 9;
-            memory = result - 9;
+            num = result - 10;
+            memory = 1;
+
         } else {
             num = result;
+            memory = 0;
         }
 
-
         resArr[i] = num;
-
-
     }
-
     return resArr.reverse();
 }
 

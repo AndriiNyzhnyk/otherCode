@@ -139,8 +139,8 @@ function insertSort(arr) {
 let str1 = '100017148691328790045731598213304178096';
 let str2 = '100787787854513';
 
-console.log('Param 1: ' + str1);
-console.log('Param 2: ' + str2);
+// console.log('Param 1: ' + str1);
+// console.log('Param 2: ' + str2);
 
 
 let length1 = str1.length;
@@ -221,4 +221,21 @@ function resizeArr(arr, odds) {
     }
 }
 
-console.log(addNum(arr1, arr2).join(''));
+// console.log(addNum(arr1, arr2).join(''));
+
+
+// test JSON parse and stringify
+const bytes = require('pretty-bytes');
+const obj = {};
+for ( let i = 0; i < 200000; i++) {
+    obj[i] = {
+        [Math.random()]: Math.random()
+    };
+}
+console.time ('serialise ');
+const jsonString = JSON .stringify(obj);
+console.timeEnd ('serialise ');
+console.log ('Serialised Size ', bytes(Buffer.byteLength(jsonString)));
+console .time ('deserialise');
+const obj2 = JSON.parse(jsonString);
+console.timeEnd ('deserialise');

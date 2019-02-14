@@ -28,25 +28,33 @@ function generatorRandomArray(length) {
 function fib1(count) {
     let one = 1;
     let two = 1;
-    let res = [1, 1];
+    let res = new Array(count);
+    res[0] = 1;
+    res[1] = 1;
 
-    for(let i = 0; i < count; i++) {
+    for(let i = 2; i < count; i++) {
         let num = one + two;
-        res.push(num);
+        // res.push(num);
+        res[i] = num;
         one = two;
         two = num;
     }
 }
 
+console.time('fib1');
+fib1(100);
+console.timeEnd('fib1');
+
+
 // reqursia fibonachi 1
-arrFib2 = [];
+let arrFib1 = [];
 function fib2(count, one = 1, two = 1) {
-    if(count === 0) return;
-    if(one === 1 && two === 1) arrFib2.push(one, two);
+    if(count === 0) return arrFib1;
+    if(one === 1 && two === 1) arrFib1.push(one, two);
 
     count--;
     let num = one + two;
-    arrFib2.push(num);
+    arrFib1.push(num);
     one = two;
     two = num;
     return fib2(count, one, two);
@@ -54,8 +62,12 @@ function fib2(count, one = 1, two = 1) {
 
 // fib2(100);
 
+console.time('fib2');
+fib2(100);
+console.timeEnd('fib2');
 
-// reqursia fibonachi 2
+
+// reqursia fibonachi 3
 function fib3(count, arr = [], one = 1, two = 1) {
     if(count === 0) return arr;
     if(one === 1 && two === 1) arr.push(one, two);
@@ -69,6 +81,9 @@ function fib3(count, arr = [], one = 1, two = 1) {
 
 }
 
+console.time('fib3');
+fib3(100);
+console.timeEnd('fib3');
 // console.log(fib3(10));
 
 // booblSort
@@ -225,17 +240,17 @@ function resizeArr(arr, odds) {
 
 
 // test JSON parse and stringify
-const bytes = require('pretty-bytes');
-const obj = {};
-for ( let i = 0; i < 200000; i++) {
-    obj[i] = {
-        [Math.random()]: Math.random()
-    };
-}
-console.time ('serialise ');
-const jsonString = JSON .stringify(obj);
-console.timeEnd ('serialise ');
-console.log ('Serialised Size ', bytes(Buffer.byteLength(jsonString)));
-console .time ('deserialise');
-const obj2 = JSON.parse(jsonString);
-console.timeEnd ('deserialise');
+// const bytes = require('pretty-bytes');
+// const obj = {};
+// for ( let i = 0; i < 200000; i++) {
+//     obj[i] = {
+//         [Math.random()]: Math.random()
+//     };
+// }
+// console.time ('serialise ');
+// const jsonString = JSON .stringify(obj);
+// console.timeEnd ('serialise ');
+// console.log ('Serialised Size ', bytes(Buffer.byteLength(jsonString)));
+// console .time ('deserialise');
+// const obj2 = JSON.parse(jsonString);
+// console.timeEnd ('deserialise');

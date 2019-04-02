@@ -254,3 +254,42 @@ function resizeArr(arr, odds) {
 // console .time ('deserialise');
 // const obj2 = JSON.parse(jsonString);
 // console.timeEnd ('deserialise');
+
+
+// test speed compare string
+// result:
+//1) simple for
+//2) justString
+//3) forEach
+function isPalindrome1(word)
+{
+    word = word.toLowerCase();
+    let arr = word.split('');
+    let newArr = [...arr];
+
+    newArr.reverse();
+
+    console.time('simple for');
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] !== newArr[i]) break; // return false
+    }
+    console.timeEnd('simple for');
+
+    console.time('forEach');
+    arr.forEach((item, index, array) => {
+        if(item !== newArr[index]) console.log('done forEach');
+    });
+    console.timeEnd('forEach');
+
+
+    console.time('justString');
+    let str = newArr.join();
+    if(str !== word) console.log('justString');
+
+    console.timeEnd('justString');
+
+    return true;
+}
+
+console.log(isPalindrome1('Deleveledeleveled'));
+console.log(isPalindrome1('adam'));

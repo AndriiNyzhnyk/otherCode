@@ -291,5 +291,38 @@ function isPalindrome1(word)
     return true;
 }
 
-console.log(isPalindrome1('Deleveledeleveled'));
-console.log(isPalindrome1('adam'));
+// console.log(isPalindrome1('Deleveledeleveled'));
+// console.log(isPalindrome1('adam'));
+
+
+
+// test async Iterators
+function helpMe() {
+    return new Promise(resolve => { setTimeout(() => { 
+        console.log('promise');
+        resolve('ok')
+    }, 3000)})
+    
+}
+
+let a = [0, 1, 2];
+async function asyncIterators() {
+    console.log('tick 1');
+    
+    for(let i = 0; i < a.length; i++) {
+        await helpMe();
+        console.log('await');
+    }
+    
+    console.log('tick 2');
+    
+    for await (let item of a) {
+        helpMe();
+        console.log('asynk loop');
+    }
+    
+    console.log('tick 3');
+
+}
+
+// asyncIterators();
